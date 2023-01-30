@@ -4,6 +4,10 @@ body
     font-family: 'JetBrains Mono', monospace;
     color:antiquewhite;
 }
+
+:root{
+    accent-color : #1DB954;
+  }
 .text-center {
     text-align: center;
 }
@@ -31,6 +35,7 @@ body
     padding: 0.7rem 1rem;
     border: 0px;
     border-radius: 5px;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 1.2rem;
 }
 .mt-5 {
@@ -118,4 +123,14 @@ body
     -webkit-user-select: none;
     -o-user-select: none;
     user-select: none;
+}
+
+.radio-input
+{
+
+    margin-left: 1rem;
+}
+.label-radio
+{
+    margin-right: 2rem
 }

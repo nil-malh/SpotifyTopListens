@@ -116,34 +116,42 @@ let userToken = undefined;
   </div>
 */
 // Create radio input for "2 weeks" option
-var radio2Weeks = document.createElement("input");
+let radio2Weeks = document.createElement("input");
 radio2Weeks.type = "radio";
+radio2Weeks.className = "radio-input"
 radio2Weeks.name = "timeRange";
 radio2Weeks.value = "short_term";
 
 // Create label for "2 weeks" option
-var label2Weeks = document.createElement("label");
+let label2Weeks = document.createElement("label");
+label2Weeks.className = "label-radio"
 label2Weeks.innerHTML = "4 weeks";
 
 // Create radio input for "6 months" option
-var radio6Months = document.createElement("input");
+let radio6Months = document.createElement("input");
 radio6Months.type = "radio";
+radio6Months.className = "radio-input"
 radio6Months.name = "timeRange";
 radio6Months.value = "medium_term";
 
 // Create label for "6 months" option
-var label6Months = document.createElement("label");
+let label6Months = document.createElement("label");
 label6Months.innerHTML = "6 months";
+label6Months.className = "label-radio"
+
 
 // Create radio input for "all time" option
-var radioAllTime = document.createElement("input");
+let radioAllTime = document.createElement("input");
 radioAllTime.type = "radio";
+radioAllTime.className = "radio-input"
 radioAllTime.name = "timeRange";
 radioAllTime.value = "long_term";
 
 // Create label for "all time" option
-var labelAllTime = document.createElement("label");
+let labelAllTime = document.createElement("label");
 labelAllTime.innerHTML = "all time";
+labelAllTime.className = "label-radio"
+
 
 // Add radio inputs and labels to form
 
@@ -165,7 +173,7 @@ labelAllTime.innerHTML = "all time";
         console.log("Selected time range: " + timeRange);
 
         getUserTopSongs(inputValue,timeRange)
-        if(errorMessage !== null)
+        if(errorMessage.innerText !== null)
                 errorMessage.remove();
     });
 
