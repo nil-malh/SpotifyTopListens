@@ -8,14 +8,14 @@ body
     text-align: center;
 }
 .input {
-    width: 50vw;
+    width: 35vw;
     border: 0px;
     padding: 0.5rem;
     border-radius:5px;
     padding: 0.7rem;
 }
 .redirect-button {
-    color: green;
+    color: #1DB954;
 }
 .login-container {
     width: 80vw;
@@ -27,7 +27,7 @@ body
 }
 .button-submit {
     color: white;
-    background-color: green;
+    background-color: #1DB954;
     padding: 0.7rem 1rem;
     border: 0px;
     border-radius: 5px;
