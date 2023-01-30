@@ -109,7 +109,7 @@ function getUserTopSongs(authToken)
             divSongContainer.className = "songs-container";
         for (const album of response.items) {
             let songContainer = document.createElement("div");
-            songContainer.className = "song";
+            songContainer.className = "song a";
  
             const albumName = album.album.name;
             const artistName = album.album.artists[0].name;
@@ -118,7 +118,7 @@ function getUserTopSongs(authToken)
             console.log(album.album.images[0].url);
         
             let img = document.createElement("img");
-            img.className = "artwork";
+            img.className = "artwork mt-3";
             img.src = albumCoverURL;
 
 // Create a p element to display the song name
@@ -152,7 +152,7 @@ let userToken = undefined;
         welcomeTextDiv.innerText = "Due to this project being front-end only I can't give you your token to get your top songs, You will need to go to the Spotify Website and grab your token or ";
 
     let redirectButton = document.createElement("a")
-        redirectButton.className = "redirect-button";
+        redirectButton.className = "redirect-button text-center";
         redirectButton.target = "_blank"
         redirectButton.href = "https://developer.spotify.com/console/get-current-user-top-artists-and-tracks/?type=tracks&time_range=&limit=&offset="
         redirectButton.innerText = "Click here !"
@@ -163,15 +163,16 @@ let userToken = undefined;
 
     let inputToken = document.createElement("input");
         inputToken.type = "text";
-        inputToken.id = "token"
+        inputToken.id = "token";
+        inputToken.className = "input mt-1";
         inputToken.required = "required";
 //*<label for="name" class="form__label">Name</label>
         let labelToken = document.createElement("span");
-            labelToken.innerText= "Token";
 
         let isep = document.createElement("i");
 
     let buttonToken = document.createElement("button");
+    buttonToken.className = "button-submit mt-1";
     buttonToken.innerHTML = "Submit";
 
     // AddToken an event listener to the button
