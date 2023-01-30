@@ -1,0 +1,124 @@
+@font-face {
+    font-family: 'Circular',;
+    src: url(/assets/fonts/circular-std-medium-500.ttf) format('truetype');
+}
+
+body
+{
+    background-color: #232323;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-spotify{
+    font-family: 'Circular';
+}
+.text-white
+{
+    color: white;
+}
+
+.text-3rem
+{
+    font-size: 1.5rem;    
+}
+
+.text-green
+{
+    color : #1DB954;
+}
+
+.songs-container
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.song{
+
+    padding: 2rem;
+}
+.song img{
+    width: 20rem;
+    height: 20rem;
+}
+.song-title
+{
+    text-align: center;
+    font-family: 'Circular';
+    color: white;
+    font-size: 2rem;
+}
+
+.login-container
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+}
+.inputbox {
+    position: relative;
+    width: 290px;
+  }
+  
+  .inputbox input {
+    position: relative;
+    
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    color: #23242a;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+  }
+  
+  .inputbox span {
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    font-size: 1em;
+    color: #8f8f8f;
+    letter-spacing: 00.05em;
+    transition: 0.5s;
+    pointer-events: none;
+  }
+  
+  .inputbox input:valid ~span,
+  .inputbox input:focus ~span {
+    color: #1DB954;
+    transform: translateX(-10px) translateY(-34px);
+    font-size: 0,75em;
+  }
+  
+  .inputbox i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #1DB954;
+    border-radius: 4px;
+    transition: 0.5s;
+    pointer-events: none;
+    z-index: 9;
+  }
+  
+  .inputbox input:valid ~i,
+  .inputbox input:focus ~i {
+    height: 44px;
+  }
+
