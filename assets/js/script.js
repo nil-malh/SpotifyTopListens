@@ -78,7 +78,7 @@ new Promise((resolve, reject) => {
 curl -X "GET" "https://api.spotify.com/v1/me/top/tracks" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer BQCdv3XMlu0ndbMhFpM2HQ2ZUhsIsolIa6kw3h9pPkduqBvbXcIshSgz_b9RMeX9MFdqnbr6ZXAeD-O88ddRgxKUU7d3UekYlv2FSWPsNc8iBYOKYGhEDZBvRz05OeGyiiKWtE5RjbZO1WHgg-UzC7RVuoKH4ry9oMRtNjzTBJuTYEYX00DHC78tTcE"
 */
 
-
+let errorMessage;
 function getUserTopSongs(authToken)
 {
     let albums = [];
@@ -105,6 +105,7 @@ function getUserTopSongs(authToken)
     
         xhr.send();
     }).then((response) => {
+        let rank = 0 ;
         let divSongContainer = document.createElement("div");
             divSongContainer.className = "songs-container";
         for (const album of response.items) {
@@ -116,7 +117,7 @@ function getUserTopSongs(authToken)
             const songName = album.name;
             const albumCoverURL = album.album.images[0].url;
             console.log(album.album.images[0].url);
-        
+            rank++;
             let img = document.createElement("img");
             img.className = "artwork mt-3";
             img.src = albumCoverURL;
@@ -124,7 +125,7 @@ function getUserTopSongs(authToken)
 // Create a p element to display the song name
             let p = document.createElement("p");
             p.className = "song-title";
-            p.innerHTML = songName + ' | ' + artistName;
+            p.innerHTML = rank+". " + songName + ' | ' + artistName;
 
 // Append the img and p elements to the body of the webpage
             songContainer.appendChild(img);
@@ -136,6 +137,10 @@ function getUserTopSongs(authToken)
         
       
     }).catch((value) => {
+        errorMessage = document.createElement("p");
+        errorMessage.className = "api-error text-center";
+        errorMessage.textContent = "Huh-oh something went wrong with the request (Error : " + value[0] +value[1].split("message")[1].replace("{","").replace("}","") + ")";
+        document.body.appendChild(errorMessage);
         console.log(value);
     });
     
@@ -180,17 +185,18 @@ let userToken = undefined;
         // Get the value of the input text field using querySelector
         var inputValue = document.querySelector("#token").value;
         // Do something with the input value, e.g. alert it
-
-
         getUserTopSongs(inputValue)
+        errorMessage.remove();
     });
 
 
         loginDiv.appendChild(welcomeTextDiv);
         loginDiv.appendChild(redirectButton);
+
         formDiv.appendChild(inputToken);
         formDiv.appendChild(labelToken);
         formDiv.appendChild(isep);
+
         loginDiv.appendChild(formDiv); 
         loginDiv.appendChild(buttonToken);
 
