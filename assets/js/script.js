@@ -1,10 +1,23 @@
 const clientID = "redacted";
 const clientSecret = "redacted";
 const authBasic = btoa(clientID + ':' + clientSecret).toString('base64');
-let errorMessage;
+let errorMessage = undefined;
 let main = document.querySelector("main");
+let loginDiv = undefined;
+let divSongContainer = undefined;
+let songText = undefined;
 
-
+function getReadableString(timeRange="short_term")
+{
+    switch (timeRange){
+        case "short_term":
+            return "4 weeks";
+        case "medium_term":
+            return "6 months";
+        case "long_term":
+            return "all time"
+    }
+}
 function getUserTopSongs(authToken,timePeriod="short_term")
 {
     let albums = [];
@@ -32,12 +45,12 @@ function getUserTopSongs(authToken,timePeriod="short_term")
         xhr.send();
     }).then((response) => {
         let rank = 0 ;
-        let divSongContainer = document.createElement("div");
+         divSongContainer = document.createElement("div");
             divSongContainer.className = "songs-container";
         for (const album of response.items) {
             let songContainer = document.createElement("div");
             songContainer.className = "song a";
- 
+
             const albumName = album.album.name;
             const artistName = album.album.artists[0].name;
             const songName = album.name;
@@ -70,10 +83,8 @@ function getUserTopSongs(authToken,timePeriod="short_term")
     
 }
 
-let userToken = undefined;
-
-
-    let loginDiv = document.createElement("div");
+    let userToken = undefined;
+        loginDiv = document.createElement("div")
         loginDiv.className = "login-container";
 
     let welcomeTextDiv = document.createElement("p")
@@ -97,27 +108,6 @@ let userToken = undefined;
         inputToken.id = "token";
         inputToken.className = "input mt-1";
         inputToken.required = "required";
-//*<label for="name" class="form__label">Name</label>
-   
-
-/*
-<form>
-  <p>Veuillez choisir la meilleure méthode pour vous contacter :</p>
-  <div>
-    <input type="radio" id="contactChoice1"
-     name="contact" value="email">
-    <label for="contactChoice1">Email</label>
-
-    <input type="radio" id="contactChoice2"
-     name="contact" value="telephone">
-    <label for="contactChoice2">Téléphone</label>
-
-    <input type="radio" id="contactChoice3"
-     name="contact" value="courrier">
-    <label for="contactChoice3">Courrier</label>
-  </div>
-*/
-// Create radio input for "2 weeks" option
 let radio2Weeks = document.createElement("input");
 radio2Weeks.type = "radio";
 radio2Weeks.className = "radio-input"
@@ -162,26 +152,34 @@ labelAllTime.className = "label-radio"
     let buttonToken = document.createElement("button");
     buttonToken.className = "button-submit mt-1";
     buttonToken.innerHTML = "Submit";
+    songText = document.createElement("p");
 
-    // AddToken an event listener to the button
     buttonToken.addEventListener("click", function(){
-        // Get the value of the input text field using querySelector
         let inputValue = document.querySelector("#token").value;
-        // Do something with the input value, e.g. alert it
         let timeRange = document.querySelector('input[name="timeRange"]:checked');
         if(timeRange === null)
             timeRange = "short_term";   
         timeRange = timeRange.value;
         console.log("Selected time range: " + timeRange);
-
+        songText.innerText = `Here is your top 20 for the last ${getReadableString(timeRange)}`;
+        loginDiv.appendChild(songText);
         getUserTopSongs(inputValue,timeRange)
-        if(errorMessage.innerText !== null)
-                errorMessage.remove();
+       
+
+        if(errorMessage === undefined){
+            console.log("No error message to remove.")
+        }else{
+            errorMessage.remove();
+        }
+        if(divSongContainer === undefined){
+            console.log("No div with songs to remove.")
+        }else{
+            divSongContainer.remove();
+        }
     });
 
         loginDiv.appendChild(welcomeTextDiv);
         loginDiv.appendChild(redirectButton);
-
         formDiv.appendChild(inputToken);
         formDiv.appendChild(radio2Weeks);
         formDiv.appendChild(label2Weeks);
@@ -193,9 +191,7 @@ labelAllTime.className = "label-radio"
         form.appendChild(formDiv);
         loginDiv.appendChild(form); 
         loginDiv.appendChild(buttonToken);
-
         main.appendChild(loginDiv);    
 
+        // To-do declutter the js file with some nice functions the EOF is horrible atm
 
-
-//getUserTopSongs("BQBqEkbJVdIjQ_ocvdwHpRg5vJPSY3CgcKAQmrEFO17gA0vVlXUy0c1sNDQcgGCNrrqTEalSczKEiyMLbp6I9xN_TTUvaKLyh__cFn-yxAYThDPjMiTgn0KgUI1Hbwj1ZAoppmoc2v_xz4tMIsY_MZGM-35bre4ZLKjWvctSWuom__72-lKhROIgJEE")
