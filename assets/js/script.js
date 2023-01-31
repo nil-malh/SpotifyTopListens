@@ -2,6 +2,8 @@ const clientID = "redacted";
 const clientSecret = "redacted";
 const authBasic = btoa(clientID + ':' + clientSecret).toString('base64');
 let errorMessage;
+let main = document.querySelector("main");
+
 
 function getUserTopSongs(authToken,timePeriod="short_term")
 {
@@ -56,7 +58,7 @@ function getUserTopSongs(authToken,timePeriod="short_term")
             songContainer.appendChild(p);
             divSongContainer.appendChild(songContainer);
         }
-        document.body.appendChild(divSongContainer)        
+        main.appendChild(divSongContainer)        
       
     }).catch((value) => {
         errorMessage = document.createElement("p");
@@ -177,7 +179,6 @@ labelAllTime.className = "label-radio"
                 errorMessage.remove();
     });
 
-
         loginDiv.appendChild(welcomeTextDiv);
         loginDiv.appendChild(redirectButton);
 
@@ -193,7 +194,7 @@ labelAllTime.className = "label-radio"
         loginDiv.appendChild(form); 
         loginDiv.appendChild(buttonToken);
 
-        document.body.appendChild(loginDiv);    
+        main.appendChild(loginDiv);    
 
 
 
